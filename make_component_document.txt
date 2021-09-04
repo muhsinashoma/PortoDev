@@ -1,0 +1,258 @@
+02-08-2021
+
+-------------------------------------------------------
+To add another link :
+
+E:\xampp\htdocs\cometdev>php artisan serve --port=6400
+
+E:\xampp\htdocs\cometdev>php artisan serve --port=8001
+
+
+Porto Link
+-----------------------------------------------------
+To check all comment from git 
+
+git log
+----------------------------------------------------
+
+Git Clone
+
+$ git add .
+$ git commit -m "Add user and role migration table"
+$ git push
+
+
+$git add .
+$git commit -m "Customize registraton form"
+$git push
+
+
+$git add .
+$git commit -m "To add logout feature to Admin Template"
+$git push
+
+
+$git add .
+$git commit -m "To add register feature to admin templage"
+$git pusth 
+
+-----------------------------------------------------------------------------
+have default template in laravel
+
+For custom mail notification for
+
+---------------------------------------------------
+
+http://www.portotheme.com/wordpress/porto_landing/
+
+http://www.portotheme.com/wordpress/porto_landing/
+
+------------------------------------------------------------
+https://laravelarticle.com/laravel-8-authentication-tutorial
+
+https://nitolelectronics.com/
+
+https://demo2.pavothemes.com/freshio/home-4/
+
+
+---------------------------------------------------------------
+To send mobile SMS and have to register in nexmo.com (We want to audio call, vedio call System and SMS System)
+
+nexmo.com
+
+https://www.vonage.com/communications-apis/
+
+-------------------------------------------------------------------
+
+Package is one kind of plugin . Inside plugin are built in and we will use only
+
+
+Laravel recommands two packages for authentication
+
+one is Jetstreasm
+
+another is Passport
+
+
+-----------------------------------------------------------------
+
+To make component
+
+
+
+1. E:\xampp\htdocs\protoproject>php artisan make:component Header
+Component created successfully.
+
+E:\xampp\htdocs\protoproject>php artisan make:component Footer
+Component created successfully.
+
+E:\xampp\htdocs\protoproject>php artisan make:component Sidebar
+Component created successfully.
+
+E:\xampp\htdocs\protoproject>
+
+
+Poly morphic relationship
+-----------------------------------------------------------------
+
+One to one
+
+One to Many
+
+Many to Many
+
+
+--------------------------------------------------------------
+
+To make Auth Installation
+
+1.E:\xampp\htdocs\protoproject>composer require laravel/ui
+
+2.E:\xampp\htdocs\protoproject>php artisan ui vue --auth
+
+3. E:\xampp\htdocs\protoproject>npm audit fix
+
+4. E:\xampp\htdocs\protoproject>npm run dev
+
+5. E:\xampp\htdocs\protoproject>npm run dev
+------------------------------------------------------------------
+
+How to check database from command prompt
+
+E:\xampp\htdocs\protoproject>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 25
+Server version: 10.4.14-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ad                 |
+| apiapp             |
+| apiproduct         |
+| comet              |
+| cometdev           |
+| ecommerce_project  |
+| information_schema |
+| mails              |
+| mysql              |
+| newlaravel         |
+| notifications      |
+| performance_schema |
+| phpmyadmin         |
+| porto              |
+| portoproject       |
+| rel_polymorphic    |
+| test               |
+| vue_assignment     |
++--------------------+
+18 rows in set (0.001 sec)
+
+MariaDB [(none)]>
+
+
+---------------------------------------------------------------
+
+Notification work based on model 
+
+Email work not based on model
+
+We have to add User Model with AccountConfirmationNotification Model
+
+If any user orders any product then user will get a notificatiion
+
+ then relation between Order Model and AccountConfirmationNotification Model
+
+For Order 
+
+After ordering a product then user user will get a notification
+
+Order Model and AccountConfirmationNotification Model
+
+Notifiable is treat
+-------------------------------------------------------------
+
+Notification
+
+If we want to use custom way(For Custom Template)
+
+E:\xampp\htdocs\protoproject>php artisan make:mail AccountConfirmationMail
+
+
+If we want to use daynamic way(mail, sms, phone, slack(for official work in abroad if slack is active) using database)
+Laravel Default Template(mail can be sent to email, sms, dashboard template for client)
+1.Markdown Mail Notifiation Allows(#, ##, ###)
+
+Notification work based on Model(User and Role)
+
+while registering the form or order then user will get notification instantly
+
+E:\xampp\htdocs\protoproject>php artisan make:notification AccountConfirmationNotification
+
+E:\xampp\htdocs\protoproject>php artisan migrate:refresh
+
+-------------------------------------------------------------
+
+Someone just used your password to try to sign in to your account from a non-Google app. Google blocked them, but you should check what happened. Review your account activity to make sure no one else has access.
+
+
+## Login can be users or author or anybody
+
+LoginController.php
+
+ public function username()
+    {
+
+        // We need multifeature to login(email/username/phone_number)
+
+        //  return 'email';
+
+        // return 'username';   //match with three column(databasename, loginform-name, return column )
+
+        return 'phone_number';
+
+
+    }
+
+
+
+received data from request form(login.blade.php)
+
+  $login_data = request() -> input('login_data');
+
+
+-------------------------------------------------------------------------------------------------------------------
+E:\xampp\htdocs\protoproject>php artisan r:l
+
+    Method	URI			  Name			Action						
+-------------------------------------------------------------------------------------------------------------------
+   | POST     | login                  |                  | App\Http\Controllers\Auth\LoginController@login
+
+   | POST     | logout                 | logout           | App\Http\Controllers\Auth\LoginController@logout
+
+   | POST     | register               |                  | App\Http\Controllers\Auth\RegisterController@register
+
+   ---------------------------------------------------------------------------------------------------------------
+   To make post by using resource controller
+
+
+   Microsoft Windows [Version 10.0.19043.1165]
+   (c) Microsoft Corporation. All rights reserved.
+
+   E:\xampp\htdocs\protoproject>php artisan make:controller PostController --resource
+   Controller created successfully.
+
+   E:\xampp\htdocs\protoproject>php artisan make:model PostModel -m
+   Model created successfully.
+   Created Migration: 2021_08_28_180727_create_post_models_table
+
+   E:\xampp\htdocs\protoproject>
+
+
+

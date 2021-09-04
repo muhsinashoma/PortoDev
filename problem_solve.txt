@@ -1,0 +1,12 @@
+1. You are not using the required namespace, try to use the following in your controller:
+
+use Illuminate\Http\Request;
+
+
+
+	
+قتل
+kill, murder, shoot, slay, put to death, fire
+
+قاتل
+fight, combat, engage, war
