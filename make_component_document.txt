@@ -36,6 +36,8 @@ $git add .
 $git commit -m "To add register feature to admin templage"
 $git pusth 
 
+
+"1.To add user and role migration table 2. Customize registration form 3. To add logout feature to Admin Template 4. To add register feature to admin template 5. To slide Admin Template with Database
 -----------------------------------------------------------------------------
 have default template in laravel
 
