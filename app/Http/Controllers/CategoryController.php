@@ -49,18 +49,45 @@ class CategoryController extends Controller
             'user_role_id' =>$request ->user_role_id
         ]);
 
-          if($request ->hasfile('cate_image')){
 
-              $img = $request ->file('cate_image');
-              $image_name = md5(time().rand()).'.'.$img -> getClientOriginalExtension();
-              $img ->move(public_path('photos/'), $image_name);
+           if($request ->hasFile('cate_image')){
+
+                  $img = $request ->file('cate_image');
+                  foreach ($img as $image){
+
+                   $image_name = md5(time().rand()).'.'.$image->getClientOriginalExtension();
+                   $image->move(public_path('photos/'),$image_name);
+
+                   $cagetory_info ->image()->create([
+                       'path' =>$image_name
+                   ]);
+
+               }
 
 
-              $cagetory_info ->image() ->create([
-                  'path' => $image_name
-              ]);
 
-          }
+           }
+
+
+
+
+
+       //for single image one to one
+//          if($request ->hasfile('cate_image')){
+//
+//              $img = $request ->file('cate_image');
+//              $image_name = md5(time().rand()).'.'.$img -> getClientOriginalExtension();
+//              $img ->move(public_path('photos/'), $image_name);
+//
+//
+//              $cagetory_info ->image() ->create([
+//                  'path' => $image_name
+//              ]);
+//
+//          }
+
+
+
 
 
 

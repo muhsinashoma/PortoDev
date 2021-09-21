@@ -340,8 +340,8 @@ E:\xampp\htdocs\protoproject>php artisan migrate
 ----------------------------------------------
 21-09-2021
 
-For Student : one to one (morphOne)
+For Student : one to one is morphOne Function
 
-For Product or Post : one to many(morphMany)
+For Product or Post : one to many is  morphMany Function
 
 

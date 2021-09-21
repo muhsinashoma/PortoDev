@@ -13,7 +13,11 @@ class Category extends Model
 
     public function image(){
         //one image for one post -->morphOne
-        return $this ->morphOne(Image::class, 'imageable' );
+        //return $this ->morphOne(Image::class, 'imageable' );
+
+
+        //multiple image for one post -->morphMany
+        return $this ->morphMany(Image::class, 'imageable');
 
     }
 }

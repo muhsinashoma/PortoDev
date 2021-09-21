@@ -123,7 +123,22 @@
                   <td>{{$data -> cate_name}}</td>
                   <td>{{$data -> cate_slug}}</td>
                   <td>{{$data ->user_role_id}}</td>
-                  <td><img src="photos/{{$data -> image ->path}}" alt="" style="width: 50px; height: 50px"></td>
+
+                  {{--{{'To show single image'}}--}}
+                  {{--<img src="photos/{{$data -> image ->path}}" alt="" style="width: 50px; height: 50px">--}}
+
+
+                  <td>
+
+                    {{--{{'To show first postion value of array'}}--}}
+                    
+                    {{--<img src="photos/{{ $data ->image[0] ->path}}" style="width:50px; height: 50px;">--}}
+
+                    @foreach($data -> image as $item)
+                        <img src="photos/{{$item ->path}}" alt="" style="width: 50px; height: 50px">
+                      @endforeach
+                  </td>
+
                   <td>{{$data->created_at}}</td>
                    <td>
                      <a class="btn btn-sm btn-info" href="#">View</a>
@@ -176,7 +191,7 @@
                  </div>
 
                  <div class="form-group">
-                   <input type="file" name="cate_image">
+                   <input type="file" name="cate_image[]" multiple>
                  </div>
 
 
