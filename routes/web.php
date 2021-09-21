@@ -49,4 +49,35 @@ Route::post('admin/register',[App\Http\Controllers\Auth\RegisterController::clas
 /*
  * Post Route
  */
-Route::resource('admin_post', 'App\Http\Controllers\PostController');
+Route::resource('post', 'App\Http\Controllers\PostController');
+
+
+/*
+ * Category Route
+ */
+Route::resource('post_category', 'App\Http\Controllers\CategoryController');
+
+
+/*
+ * Tag Route
+ */
+Route::resource('post_tag','App\Http\Controllers\TagController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

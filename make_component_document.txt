@@ -256,5 +256,92 @@ E:\xampp\htdocs\protoproject>php artisan r:l
 
    E:\xampp\htdocs\protoproject>
 
+-----------------------------------------------
+
+11-09-2021
+
+Polymorphic one to one 
+
+To make resource controller
+
+Step : 1
+E:\xampp\htdocs\protoproject>php artisan make:model PostModel -mr
+
+
+
+Step : 2
+E:\xampp\htdocs\protoproject>php artisan make:model Category -mr
+
+
+
+step : 3
+E:\xampp\htdocs\protoproject>php artisan make:model Tag -mr
+
+
+
+step :4  To crate category
+
+E:\xampp\htdocs\protoproject>php artisan migrate
+Migrating: 2021_08_28_180727_create_post_models_table
+Migrated:  2021_08_28_180727_create_post_models_table (859.25ms)
+Migrating: 2021_09_11_233320_create_categories_table
+Migrated:  2021_09_11_233320_create_categories_table (321.84ms)
+Migrating: 2021_09_11_235638_create_tags_table
+Migrated:  2021_09_11_235638_create_tags_table (690.20ms)
+
+step : 5 : All (Module) Image will be stored in migration tables
+
+
+E:\xampp\htdocs\protoproject>php artisan make:model Image -m
+
+
+step 6: Polymorphic Relationship Structure
+
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Image extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [];
+
+    public function imageable(){
+
+        return $this ->morphTo();
+    }
+
+}
+
+
+
+public function up()
+    {
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->string('path');
+            $table->integer('imageable_id');  //post id or tag id
+            $table->string('imageable_type');
+            $table->timestamps();
+        });
+    }
+
+
+E:\xampp\htdocs\protoproject>php artisan migrate
+
+
+
+//One to Many Relationship(Polymorphic)
+----------------------------------------------
+21-09-2021
+
+For Student : one to one (morphOne)
+
+For Product or Post : one to many(morphMany)
 
 

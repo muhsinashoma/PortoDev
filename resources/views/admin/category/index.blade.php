@@ -92,7 +92,7 @@
       <div class="row">
         <div class="col-md-12">
 
-          <a class="btn btn-sm btn-warning" data-toggle="modal" href="#post">Add New Post</a>
+          <a class="btn btn-sm btn-warning" data-toggle="modal" href="#post_category">Add New Category</a>
            <br>
            <br>
 
@@ -105,22 +105,26 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
+
                 <tr>
-                  <th>Post Title </th>
                   <th>Category</th>
-                  <th>Tag</th>
+                  <th>Slug</th>
+                  <th>User Role </th>
+                  <th>Category Image</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
+
+                @foreach($all_data  as $data)
+
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td>Date</td>
+                  <td>{{$data -> cate_name}}</td>
+                  <td>{{$data -> cate_slug}}</td>
+                  <td>{{$data ->user_role_id}}</td>
+                  <td><img src="photos/{{$data -> image ->path}}" alt="" style="width: 50px; height: 50px"></td>
+                  <td>{{$data->created_at}}</td>
                    <td>
                      <a class="btn btn-sm btn-info" href="#">View</a>
                      <a class="btn btn-sm btn-warning" href="#">Edit</a>
@@ -128,13 +132,15 @@
                     </td>
                 </tr>
 
+                  @endforeach
 
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Post Title</th>
                   <th>Category</th>
-                  <th>Tag</th>
+                  <th>Slug</th>
+                  <th>User Role </th>
+                  <th>Category Image</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
@@ -152,20 +158,38 @@
 
 
       <!-- Modal -->
-      <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="post_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+               <form action="{{route('post_category.store')}}" method="POST" enctype="multipart/form-data">
+                 @csrf
+
+                 <div class="form-group">
+                    <input type="text" name="cate_name" class="form-control" placeholder="Category Name">
+                 </div>
+
+                 <div class="form-group">
+                   <input type="file" name="cate_image">
+                 </div>
+
+
+                 <div class="form-group">
+                   <input type="hidden" name="user_role_id" value="{{Auth::user()->role_id}}">
+                 </div>
+                 <div class="form-group">
+                   <input type="submit" class="btn btn-primary" value="Add">
+                 </div>
+               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
