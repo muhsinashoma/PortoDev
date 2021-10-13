@@ -20,4 +20,13 @@ class Category extends Model
         return $this ->morphMany(Image::class, 'imageable');
 
     }
+
+
+    //Multiple sub-cagtegories can have under one category
+    public function subcategories(){
+        return $this ->belongsToMany('App\Models\Subcategory');
+    }
+
+
+
 }

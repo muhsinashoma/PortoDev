@@ -1,11 +1,43 @@
 02-08-2021
 
+
+
+golam.kibria@fiberathome.net
+"Major Shoib Bashir Azad" <shoib@fiberathome.net>
+
 -------------------------------------------------------
 To add another link :
 
 E:\xampp\htdocs\cometdev>php artisan serve --port=6400
 
+http://127.0.0.1:6400
+http://127.0.0.1:6400
+
+
+E:\xampp\htdocs\rel-polymorphic>php artisan serve --port=6401
+http://127.0.0.1:6401
+
 E:\xampp\htdocs\cometdev>php artisan serve --port=8001
+
+--------------------------------
+1.E:\xampp\htdocs\cometdev>php artisan serve
+  Starting Laravel development server: http://127.0.0.1:8000
+
+2. E:\xampp\htdocs\protoproject>php artisan serve --port=6400
+Starting Laravel development server: http://127.0.0.1:6400
+
+3. E:\xampp\htdocs\rel-polymorphic>php artisan serve --port=6401
+   Starting Laravel development server: http://127.0.0.1:6401
+---------------------------------
+Local host
+
+http://127.0.0.1:8000/post/create
+
+http://127.0.0.1:8000/admin/dashboard
+
+http://127.0.0.1:6400/post
+
+http://127.0.0.1:6401/product
 
 
 Porto Link
@@ -262,7 +294,7 @@ E:\xampp\htdocs\protoproject>php artisan r:l
 
 Polymorphic one to one 
 
-To make resource controller
+To make model with resource controller
 
 Step : 1
 E:\xampp\htdocs\protoproject>php artisan make:model PostModel -mr
@@ -345,3 +377,225 @@ For Student : one to one is morphOne Function
 For Product or Post : one to many is  morphMany Function
 
 
+-----------------------------------------------
+// Relation between category and subcategory table
+---------------------------------------------------
+
+Step : 1
+
+E:\xampp\htdocs\protoproject>php artisan make:migration create_category_subcategory_table --create=category_subcategory
+
+
+
+Step : 2
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+
+class CreateCategorySubcategoryTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('category_subcategory', function (Blueprint $table) {
+            $table->id();
+            $table->integer('category_id');
+            $table->integer('sub_category_id');
+            $table->integer('status')->default(1);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('category_subcategory');
+    }
+}
+
+
+Step : 3
+
+//To create category_subcategory table
+E:\xampp\htdocs\protoproject>php artisan migrate
+
+
+---------------------------------------------------------------------
+// Relation between Post and Category table
+---------------------------------------------------------------------
+
+Step : 1
+
+
+E:\xampp\htdocs\protoproject>php artisan make:migration create_category_post_model_table --create=category_post_model
+
+
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCategoryPostModelTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('category_post_model', function (Blueprint $table) {
+            $table->id();
+            $table->integer('post_model_id');
+            $table->integer('category_id');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('category_post_model');
+    }
+}
+
+
+
+---------------------------------------------------------------------
+// Relation between Post and Tag table
+---------------------------------------------------------------------
+Step : 1
+
+E:\xampp\htdocs\protoproject>php artisan make:migration create_post_model_tag_table --create=post_model_tag
+Created Migration: 2021_10_09_112538_create_post_model_tag_table
+
+
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostModelTagTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('post_model_tag', function (Blueprint $table) {
+            $table->id();
+            $table ->integer('post_model_id');
+            $table ->integer('tag_id');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('post_model_tag');
+    }
+}
+
+
+---------------------------------------------------------
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class PostModel extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [];
+
+    //multiple image for one post -->morphMany
+    public function image(){
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    //Multiple cagtegories can have under one post
+    public function categories(){
+       return  $this ->belongsToMany('App\Models\Category');
+    }
+
+    //Multiple tags can have under one post
+    public function tags(){
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
+}
+
+-------------------------------------------------------------
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostModelsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('post_models', function (Blueprint $table) {
+            $table->id();
+            $table->string('post_type');
+            $table->string('post_title')->unique();
+            $table->string('post_slug');
+            $table->longText('post_content');
+            $table->string('special_link');
+            $table->unsignedInteger('user_role');
+            $table->boolean('status')->default(true);
+            $table->boolean('trash')->default(false);
+            $table->unsignedInteger('views')->default('0');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('post_models');
+    }
+}
+
+--------------------------------------------------------------------

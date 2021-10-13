@@ -15,6 +15,15 @@ class CreatePostModelsTable extends Migration
     {
         Schema::create('post_models', function (Blueprint $table) {
             $table->id();
+            $table->string('post_type');
+            $table->string('post_title')->unique();
+            $table->string('post_slug');
+            $table->longText('post_content');
+            $table->string('special_link');
+            $table->unsignedInteger('user_role');
+            $table->boolean('status')->default(true);
+            $table->boolean('trash')->default(false);
+            $table->unsignedInteger('views')->default('0');
             $table->timestamps();
         });
     }

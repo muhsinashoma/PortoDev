@@ -54,6 +54,7 @@
 
                     <li><a href="{{route('post.index')}}"><i class="fa fa-circle-o"></i> Post</a></li>
                     <li><a href="{{route('post_category.index')}}"><i class="fa fa-circle-o"></i> Category</a></li>
+                    <li><a href="{{route('sub_category.index')}}"><i class="fa fa-circle-o"></i> Sub Category</a></li>
                     <li><a href="{{route('post_tag.index')}}"><i class="fa fa-circle-o"></i> Tag</a></li>
 
                 </ul>

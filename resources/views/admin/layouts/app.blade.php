@@ -23,6 +23,9 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/skins/_all-skins.min.css')}}">
 
+    <!-- Select 2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -73,6 +76,16 @@
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
 
 
+
+<!-- Select 2 -->
+{{--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+ <script src="{{asset('admin/dist/js/select2.min.js')}}"></script>
+
+  <!---CKEDITOR -->
+<script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
 
  <!--Custom JS --->
 <script src="{{asset('admin/dist/js/porto/custom.js')}}"></script>

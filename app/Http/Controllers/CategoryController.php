@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,9 +18,15 @@ class CategoryController extends Controller
     {
        //return view('admin.category.index');
 
-       $categories = Category::all();
+        $subcategoris = Subcategory::all();
+
+        $categories = Category::all();
+
+
        return view('admin.category.index', [
-          'all_data' => $categories
+          'all_data' => $categories,
+           'sub_categories'=> $subcategoris
+
        ]);
     }
 
@@ -41,9 +48,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-          //return $request ->all();
+        //  return $request ->all();
 
-           $cagetory_info = Category::create([
+            $category_info = Category::create([
             'cate_name' => $request ->cate_name,
             'cate_slug' => Str::slug($request->cate_name),
             'user_role_id' =>$request ->user_role_id
@@ -58,18 +65,22 @@ class CategoryController extends Controller
                    $image_name = md5(time().rand()).'.'.$image->getClientOriginalExtension();
                    $image->move(public_path('photos/'),$image_name);
 
-                   $cagetory_info ->image()->create([
+                      $category_info ->image()->create([
                        'path' =>$image_name
                    ]);
 
-               }
+               } //endforeach
+
+           }//endif
 
 
+//        if(isset($request ->sub_cate)){
 
-           }
+        $category_info -> subcategories()->attach($request ->sub_category_id);
 
+        return redirect()-> back();
 
-
+//         }
 
 
        //for single image one to one
@@ -91,7 +102,7 @@ class CategoryController extends Controller
 
 
 
-       return redirect()-> back();
+
     }
 
     /**

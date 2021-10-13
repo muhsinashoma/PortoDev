@@ -57,6 +57,11 @@ Route::resource('post', 'App\Http\Controllers\PostController');
  */
 Route::resource('post_category', 'App\Http\Controllers\CategoryController');
 
+/**
+ * SubCategory Route
+ */
+
+Route::resource('sub_category','App\Http\Controllers\SubcategoryController');
 
 /*
  * Tag Route

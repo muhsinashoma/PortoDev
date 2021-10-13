@@ -98,7 +98,7 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Post Details</h3>
             </div>
 
             <!-- /.box-header -->
@@ -106,35 +106,72 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>SL</th>
+                  <th>Post Type</th>
                   <th>Post Title </th>
                   <th>Category</th>
                   <th>Tag</th>
+                  <th>Content</th>
+                  <th>Role User</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
                 </thead>
+
                 <tbody>
+
+                @foreach($all_data as $data )
+
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
+                  <td>{{$loop->index+1}}</td>
+                  <td>{{$data ->post_type}}</td>
+                  <td>{{$data->post_title}} </td>
+                  <td>
+                    <ul>
+                       @foreach ($data->categories as $category)
+                         <li>{{$category->cate_name}}
+
+                           <ul>
+                               @foreach($category->subcategories as $sub_cate)
+                                 <li>{{ $sub_cate ->sub_cate_name }} </li>
+                               @endforeach
+                           </ul>
+
+                         </li>
+                       @endforeach
+
+                    </ul>
                   </td>
-                  <td>Win 95+</td>
-                  <td>Date</td>
-                   <td>
+                  <td>
+                    <ul>
+                        @foreach($data ->tags as $tag)
+                          <li>{{$tag ->tag_name}}</li>
+                         @endforeach
+                    </ul>
+                     </td>
+                  <td>{!! Str::of(htmlspecialchars_decode($data->post_content))->words(20) !!}</td>
+                  <td>
+
+                  </td>
+                  <td>{{$data->created_at->diffForHumans()}}</td>
+                   <td style="display: inline-block">
                      <a class="btn btn-sm btn-info" href="#">View</a>
                      <a class="btn btn-sm btn-warning" href="#">Edit</a>
                      <a class="btn btn-sm btn-danger" href="#">Delte</a>
                     </td>
                 </tr>
-
+                  @endforeach
 
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Post Title</th>
+                  <th>SL</th>
+                  <th>Post Type</th>
+                  <th>Post Title </th>
                   <th>Category</th>
                   <th>Tag</th>
+                  <th>Content</th>
+                  <th>Role User</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
@@ -156,17 +193,119 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add New Post</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
+
+
+
             <div class="modal-body">
-              ...
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <!-- general form elements -->
+                  <div class="box box-primary">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                        <div class="box-body">
+
+
+                          <div class="form-group">
+                              <label for="postfomat">Post Format</label>
+                              <select class="form-control" name="post_type" id="post_format" required>
+                                  <option>-Select-</option>
+                                  <option value="Image">Image</option>
+                                  <option value="Gallery">Gallery</option>
+                                  <option value="Video">Video</option>
+                                  <option value="Audio">Audio</option>
+                              </select>
+
+                          </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Post Title</label>
+                          <input type="text" name="post_title" class="form-control" id="exampleInputEmail1" placeholder="Post Title" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Post Category : </label>
+                             @foreach($all_categories as $category)
+                              <input type="checkbox" name="post_category[]" value="{{$category->id}}"  > {{$category->cate_name}}
+                             @endforeach
+                        </div>
+
+
+
+
+                         {{--<div class="form-group">--}}
+                           {{--<label for="exampleInputPassword1">Post Tag</label>--}}
+                              {{--<select name="post_tag[]" class="post_tag_select" multiple="multiple">--}}
+                                {{--@foreach($all_tags as $tag)--}}
+                                  {{--<option  value="{{$tag ->id}}" >{{$tag ->tag_name}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                         {{--</div>--}}
+
+
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Post Tag</label>
+                          @foreach($all_tags as $tag)
+                             <input type="checkbox" name="post_tag[]"  value="{{$tag ->id}}"  > {{$tag ->tag_name}}
+                           @endforeach
+                        </div>
+
+
+                        <div class="form-group">
+                          <label>Content</label>
+                          <textarea class="form-control" id="editor1" name="post_content" required></textarea>
+                        </div>
+
+                          <div class="form-group">
+                            <label>Update Link </label>
+                            <input type="text" class="form-control" name="special_link" required>
+                          </div>
+
+
+                        <div class="form-group">
+                          <label for="exampleInputFile">File input</label>
+                          <input type="file" id="exampleInputFile" name="post_image[]" multiple required>
+                        </div>
+
+
+                          <div class="form-group" style="display: none" >
+                            <label>User Role </label>
+                            <input type="hidden" name="user_role" class="form-control" value="{{Auth::user() ->role_id}}"  >
+                          </div>
+
+                      </div>
+                      <!-- /.box-body -->
+
+                      <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
+
+
+                  </div>
+                  <!-- /.box -->
+
+                </div>
+
+              </div>
+
             </div>
+
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-info">Save changes</button>
             </div>
           </div>
         </div>
@@ -179,6 +318,12 @@
   </div>
   <!-- /.content-wrapper -->
 
+
+  {{--<script>--}}
+      {{--$(document).ready(function() {--}}
+          {{--$('.post_tag_select').select2();--}}
+      {{--});--}}
+  {{--</script>--}}
 
   @include('admin.layouts.footer')
 

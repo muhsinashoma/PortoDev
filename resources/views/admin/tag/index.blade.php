@@ -106,6 +106,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>SL</th>
                   <th>Tag Title </th>
                   <th>Tag Slug</th>
                   <th>User Role ID</th>
@@ -120,11 +121,12 @@
                 @foreach($all_data as $data)
 
                 <tr>
+                  <td>{{$loop->index+1}}</td>
                   <td>{{$data ->tag_name}}</td>
                   <td>{{$data ->tag_slug}}</td>
                   <td>{{$data ->user_role_id}}</td>
                   <td>Tag Image</td>
-                  <td><img src="photos/{{$data -> image -> path}}" alt="" style="width: 50px; height: 50px"></td>
+                  {{--<td><img src="photos/{{$data -> image -> path}}" alt="" style="width: 50px; height: 50px"></td>--}}
                    <td>
                      <a class="btn btn-sm btn-info" href="#">View</a>
                      <a class="btn btn-sm btn-warning" href="#">Edit</a>
@@ -137,6 +139,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
+                  <th>SL</th>
                   <th>Tag Title </th>
                   <th>Tag Slug</th>
                   <th>User Role ID</th>
@@ -174,11 +177,11 @@
                 @csrf
 
                 <div class="form-group">
-                  <input type="text" name="tag_name" class="form-control" placeholder="Tag Name">
+                  <input type="text" name="tag_name" class="form-control" placeholder="Tag Name" required>
                 </div>
 
                 <div class="form-group">
-                  <input type="file" name="tag_image">
+                  <input type="file" name="tag_image" required>
                 </div>
 
 

@@ -17,6 +17,16 @@
 
         });
 
+        //CK Editor
+
+        $(function () {
+           CKEDITOR.replace('editor1');
+        });
+
+        $(function () {
+            ('.post_tag_select').select2();
+        });
+
 
 
     });

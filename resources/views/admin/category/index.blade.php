@@ -107,6 +107,7 @@
                 <thead>
 
                 <tr>
+                  <th>SL</th>
                   <th>Category</th>
                   <th>Slug</th>
                   <th>User Role </th>
@@ -120,6 +121,7 @@
                 @foreach($all_data  as $data)
 
                 <tr>
+                  <td>{{$loop->index+1}}</td>
                   <td>{{$data -> cate_name}}</td>
                   <td>{{$data -> cate_slug}}</td>
                   <td>{{$data ->user_role_id}}</td>
@@ -131,7 +133,7 @@
                   <td>
 
                     {{--{{'To show first postion value of array'}}--}}
-                    
+
                     {{--<img src="photos/{{ $data ->image[0] ->path}}" style="width:50px; height: 50px;">--}}
 
                     @foreach($data -> image as $item)
@@ -152,6 +154,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
+                  <th>SL</th>
                   <th>Category</th>
                   <th>Slug</th>
                   <th>User Role </th>
@@ -182,16 +185,27 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
                <form action="{{route('post_category.store')}}" method="POST" enctype="multipart/form-data">
                  @csrf
 
                  <div class="form-group">
-                    <input type="text" name="cate_name" class="form-control" placeholder="Category Name">
+                   <h5>Category Name</h5>
+                    <input type="text" name="cate_name" class="form-control" placeholder="Category Name" required>
+                 </div>
+
+
+                 <div class="form-group">
+                   <h5>Sub Category</h5>
+                   @foreach($sub_categories as $sub_cate)
+                     <input type="checkbox" name="sub_category_id[]" value="{{$sub_cate->id}}">{{$sub_cate -> sub_cate_name}}
+                     @endforeach
                  </div>
 
                  <div class="form-group">
-                   <input type="file" name="cate_image[]" multiple>
+                   <h5>Upload File</h5>
+                   <input type="file" name="cate_image[]" required multiple >
                  </div>
 
 
@@ -199,14 +213,16 @@
                    <input type="hidden" name="user_role_id" value="{{Auth::user()->role_id}}">
                  </div>
                  <div class="form-group">
-                   <input type="submit" class="btn btn-primary" value="Add">
+                   <input type="submit" class="btn btn-primary" value="Submit">
                  </div>
                </form>
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
+
           </div>
         </div>
       </div>
