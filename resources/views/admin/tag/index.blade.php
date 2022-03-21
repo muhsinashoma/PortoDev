@@ -167,7 +167,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add New Tag</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -181,7 +181,7 @@
                 </div>
 
                 <div class="form-group">
-                  <input type="file" name="tag_image" required>
+                  <input type="file" name="tag_image" >
                 </div>
 
 

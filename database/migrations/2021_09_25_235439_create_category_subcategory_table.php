@@ -17,7 +17,9 @@ class CreateCategorySubcategoryTable extends Migration
             $table->id();
             $table->integer('category_id');
             $table->integer('subcategory_id');
-            $table->integer('status') ->default(1);
+            $table->boolean('status') ->default(true);
+            $table->boolean('trash') ->default(false);
+            $table->unsignedBigInteger('views') ->default('0');
             $table->timestamps();
         });
     }

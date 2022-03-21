@@ -50,9 +50,9 @@ class TagController extends Controller
         ]);
 
 
-       if ($request ->hasFile('tag_image')){
+       if ($request ->hasFile('post_image')){
 
-           $img = $request ->file('tag_image');
+           $img = $request ->file('post_image');
            $image_name = md5(time().rand()).'.'.$img->getClientOriginalExtension();
            $img ->move(public_path('photos/'), $image_name);
 

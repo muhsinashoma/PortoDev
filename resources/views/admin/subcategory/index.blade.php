@@ -127,7 +127,6 @@
                                         <td>{{$data ->user_role_id}}</td>
 
                                         <td>
-
                                              <img src="photos/{{ $data->image->path }}" style="width: 50px;height: 50px">
                                         </td>
 

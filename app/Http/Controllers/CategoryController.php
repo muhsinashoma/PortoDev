@@ -122,9 +122,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+      $edit_data = Category::find($id);
+
+      //$edit_subcate_info = $edit_data->subcategories;
+
+      return [
+          'id' => $edit_data->id,
+          'cate_name' => $edit_data ->cate_name,
+          'sub_category_id' => $edit_data ->sub_category_id
+      ];
+
     }
 
     /**
@@ -136,7 +145,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+
     }
 
     /**
@@ -145,8 +154,13 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+       //  echo $id;      //or  return $id;
+
+     $delete_data  = Category::find($id);
+     $delete_data -> delete();
+     return redirect() -> back()->with('Deleted Successfully');
+
     }
 }

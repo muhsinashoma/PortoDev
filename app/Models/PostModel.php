@@ -11,6 +11,13 @@ class PostModel extends Model
 
     protected $guarded = [];
 
+
+    //We will hit user table to take all information through post table. role_id have in post table as user_role that's means post table belongs to role_id that's why we have to use belongsTo
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
     //multiple image for one post -->morphMany
     public function image(){
         return $this->morphMany(Image::class, 'imageable');
@@ -24,6 +31,15 @@ class PostModel extends Model
     //Multiple tags can have under one post
     public function tags(){
         return $this->belongsToMany('App\Models\Tag');
+    }
+
+
+    /*
+     * Get all comments : There are more comments  (inverse relationship with PostModel)
+     */
+
+    public function comments(){
+        return $this->hasMany('App\Models\Comment');
     }
 
 }

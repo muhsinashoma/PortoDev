@@ -18,6 +18,9 @@ class CreateTagsTable extends Migration
             $table->string('tag_name');
             $table->string('tag_slug');
             $table->integer('user_role_id');
+            $table->boolean('status') ->default(true);
+            $table->boolean('trash')->default(false);
+            $table ->unsignedBigInteger('views')->default('0');
             $table->timestamps();
         });
     }

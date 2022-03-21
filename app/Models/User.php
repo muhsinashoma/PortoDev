@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function posts(){
+        return $this -> hasMany('App\Models\PostModel');   //since there are not post id inside user table, for this we will use hasMany() function
+    }
+
+
+    /*
+     * Get Users Comment
+     */
+
+    public function comments(){
+        return $this->hasMany('App\Models\Comment');
+    }
+
 }

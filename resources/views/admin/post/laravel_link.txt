@@ -1,0 +1,105 @@
+MS EXCEL Bangla Tutorial | Excel IF Function and Excel Operator
+https://www.youtube.com/watch?v=GOksKEtp_8s
+
+
+
+https://www.youtube.com/watch?v=NgNMyDlNocA
+জুমার রাত, আমলটি করলে এ রাতে যা চাইবেন পাবেন ইনশা আল্লাহ
+---------------------------------------------------------------------------
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_video_autoplay
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The video autoplay attribute</h1>
+
+<video width="320" height="240" controls autoplay>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+
+</body>
+</html>
+
+---------------------------------------------------------------------------
+Types of Image Files
+JPEG (or JPG) - Joint Photographic Experts Group
+PNG - Portable Network Graphics
+GIF - Graphics Interchange Format
+TIFF - Tagged Image File
+PSD - Photoshop Document
+PDF - Portable Document Format
+EPS - Encapsulated Postscript
+AI - Adobe Illustrator Document
+INDD - Adobe Indesign Document
+RAW - Raw Image Formats
+
+
+
+
+https://www.itsolutionstuff.com/post/laravel-how-to-check-if-array-is-empty-in-bladeexample.html
+
+
+Controller Code:
+
+public function index()
+{
+    $products = Product::get();
+    return view('home',compact('products'));
+}
+Blade Code:
+
+<div class="card-header">
+    <h5>Laravel Check Array Empty in Blade - itsolutionstuff.com</h5>
+</div>
+<div class="card-body">
+    @forelse ($products as $product)
+        <p class="bg-danger text-white p-1">product</p>
+    @empty
+        <p class="bg-danger text-white p-1">No product</p>
+    @endforelse
+</div>
+Example 2: @empty
+
+Controller Code:
+
+public function index()
+{
+    $products = [];
+    return view('home',compact('products'));
+}
+Blade Code:
+
+<div class="card-header">
+    <h5>Laravel Check Array Empty in Blade - itsolutionstuff.com</h5>
+</div>
+<div class="card-body">
+    @empty($products)
+        <p class="bg-danger text-white p-1">product</p>
+    @else
+        <p class="bg-danger text-white p-1">no product</p>
+    @endempty
+</div>
+Example 3: @if empty()
+
+Controller Code:
+
+public function index()
+{
+    $products = [];
+    return view('home',compact('products'));
+}
+Blade Code:
+
+<div class="card-header">
+    <h5>Laravel Check Array Empty in Blade - itsolutionstuff.com</h5>
+</div>
+<div class="card-body">
+    @if(empty($products))
+        <p class="bg-danger text-white p-1">product</p>
+    @else
+        <p class="bg-danger text-white p-1">no product</p>
+    @endif
+</div>

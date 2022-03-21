@@ -28,6 +28,20 @@ Route::get('/', function () {
 
 
 /*
+ * Frontend Controller
+ * Customized Link for All Block Post
+ */
+
+//customized link
+Route::get('all_blog', 'App\Http\Controllers\PostController@blogAllPost')->name('post.all_blog');
+
+// Blog Search
+Route::post('all_blog', 'App\Http\Controllers\PostController@blogSearch')->name('blog.search');
+
+
+
+
+/*
  * Admin Template Load
  */
 
@@ -50,6 +64,30 @@ Route::post('admin/register',[App\Http\Controllers\Auth\RegisterController::clas
  * Post Route
  */
 Route::resource('post', 'App\Http\Controllers\PostController');
+/*
+ * Customized link
+ */
+Route::get('post_trash', 'App\Http\Controllers\PostController@postTrashShow')->name('post.trash');
+
+/*
+ * pody trash update
+ */
+
+Route::get('post_trash_update/{id}', 'App\Http\Controllers\PostController@postTrashUpdate')->name('post.trash.update');
+
+/*
+ * To show Post Single Page
+ */
+//
+//Route::get('admin/blog_single/{id}', 'App\Http\Controllers\PostController@showSinglePage')->name('post.blog-single');
+
+
+Route::get('admin/blog_single/{id}', 'App\Http\Controllers\PostController@showSinglePage')->name('post.blog-single');
+
+Route::get('admin/blog_post/{id}','App\Http\Controllers\PostController@postBlogPage')->name('post.blog_post');
+
+
+
 
 
 /*
@@ -69,11 +107,15 @@ Route::resource('sub_category','App\Http\Controllers\SubcategoryController');
 Route::resource('post_tag','App\Http\Controllers\TagController');
 
 
+/**
+ * Comment Managment
+ */
 
 
+//This route Works perfectly
 
-
-
+Route::post('single_post_comment', [App\Http\Controllers\CommentController::class, 'postComment'])->name('blog.post.comment');
+Route::post('single_post_reply', [App\Http\Controllers\CommentController::class, 'addPostReply'])->name('blog.post.reply');
 
 
 

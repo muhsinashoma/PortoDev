@@ -2,6 +2,10 @@
 
 
 
+design link :  protoproject\public\admin\dist\js\porto\custom.js
+
+-----------------------------------------------------------------
+
 golam.kibria@fiberathome.net
 "Major Shoib Bashir Azad" <shoib@fiberathome.net>
 
@@ -19,7 +23,7 @@ http://127.0.0.1:6401
 
 E:\xampp\htdocs\cometdev>php artisan serve --port=8001
 
---------------------------------
+-------------------------------------------------------
 1.E:\xampp\htdocs\cometdev>php artisan serve
   Starting Laravel development server: http://127.0.0.1:8000
 
@@ -599,3 +603,330 @@ class CreatePostModelsTable extends Migration
 }
 
 --------------------------------------------------------------------
+
+E:\xampp\htdocs\protoproject>php artisan r:l
+
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\xampp\htdocs\protoproject>php artisan r:l
++--------+-----------+------------------------------------+-----------------------+------------------------------------------------------------+------------+
+| Domain | Method    | URI                                | Name                  | Action                                                     | Middleware |
++--------+-----------+------------------------------------+-----------------------+------------------------------------------------------------+------------+
+|        | GET|HEAD  | /                                  |                       | Closure                                                    | web        |
+|        | GET|HEAD  | admin/dashboard                    | admin.dashboard       | App\Http\Controllers\AdminController@showAdminDashboard    | web        |
+|        | GET|HEAD  | admin/login                        | admin.login           | App\Http\Controllers\AdminController@showAdminLoginForm    | web        |
+|        | POST      | admin/login                        | admin.login           | App\Http\Controllers\Auth\LoginController@login            | web        |
+|        |           |                                    |                       |                                                            | guest      |
+|        | POST      | admin/logout                       | admin.logout          | App\Http\Controllers\Auth\LoginController@logout           | web        |
+|        | POST      | admin/register                     | admin.register        | App\Http\Controllers\Auth\RegisterController@register      | web        |
+|        |           |                                    |                       |                                                            | guest      |
+|        | GET|HEAD  | admin/register                     | admin.register        | App\Http\Controllers\AdminController@showAdminRegisterForm | web        |
+|        | GET|HEAD  | api/user                           |                       | Closure                                                    | api        |
+|        |           |                                    |                       |                                                            | auth:api   |
+|        | GET|HEAD  | post                               | post.index            | App\Http\Controllers\PostController@index                  | web        |
+|        | POST      | post                               | post.store            | App\Http\Controllers\PostController@store                  | web        |
+|        | GET|HEAD  | post/create                        | post.create           | App\Http\Controllers\PostController@create                 | web        |
+|        | GET|HEAD  | post/{post}                        | post.show             | App\Http\Controllers\PostController@show                   | web        |
+|        | PUT|PATCH | post/{post}                        | post.update           | App\Http\Controllers\PostController@update                 | web        |
+|        | DELETE    | post/{post}                        | post.destroy          | App\Http\Controllers\PostController@destroy                | web        |
+|        | GET|HEAD  | post/{post}/edit                   | post.edit             | App\Http\Controllers\PostController@edit                   | web        |
+|        | GET|HEAD  | post_category                      | post_category.index   | App\Http\Controllers\CategoryController@index              | web        |
+|        | POST      | post_category                      | post_category.store   | App\Http\Controllers\CategoryController@store              | web        |
+|        | GET|HEAD  | post_category/create               | post_category.create  | App\Http\Controllers\CategoryController@create             | web        |
+|        | DELETE    | post_category/{post_category}      | post_category.destroy | App\Http\Controllers\CategoryController@destroy            | web        |
+|        | GET|HEAD  | post_category/{post_category}      | post_category.show    | App\Http\Controllers\CategoryController@show               | web        |
+|        | PUT|PATCH | post_category/{post_category}      | post_category.update  | App\Http\Controllers\CategoryController@update             | web        |
+|        | GET|HEAD  | post_category/{post_category}/edit | post_category.edit    | App\Http\Controllers\CategoryController@edit               | web        |
+|        | GET|HEAD  | post_tag                           | post_tag.index        | App\Http\Controllers\TagController@index                   | web        |
+|        | POST      | post_tag                           | post_tag.store        | App\Http\Controllers\TagController@store                   | web        |
+|        | GET|HEAD  | post_tag/create                    | post_tag.create       | App\Http\Controllers\TagController@create                  | web        |
+|        | GET|HEAD  | post_tag/{post_tag}                | post_tag.show         | App\Http\Controllers\TagController@show                    | web        |
+|        | PUT|PATCH | post_tag/{post_tag}                | post_tag.update       | App\Http\Controllers\TagController@update                  | web        |
+|        | DELETE    | post_tag/{post_tag}                | post_tag.destroy      | App\Http\Controllers\TagController@destroy                 | web        |
+|        | GET|HEAD  | post_tag/{post_tag}/edit           | post_tag.edit         | App\Http\Controllers\TagController@edit                    | web        |
+|        | GET|HEAD  | sub_category                       | sub_category.index    | App\Http\Controllers\SubcategoryController@index           | web        |
+|        | POST      | sub_category                       | sub_category.store    | App\Http\Controllers\SubcategoryController@store           | web        |
+|        | GET|HEAD  | sub_category/create                | sub_category.create   | App\Http\Controllers\SubcategoryController@create          | web        |
+|        | GET|HEAD  | sub_category/{sub_category}        | sub_category.show     | App\Http\Controllers\SubcategoryController@show            | web        |
+|        | PUT|PATCH | sub_category/{sub_category}        | sub_category.update   | App\Http\Controllers\SubcategoryController@update          | web        |
+|        | DELETE    | sub_category/{sub_category}        | sub_category.destroy  | App\Http\Controllers\SubcategoryController@destroy         | web        |
+|        | GET|HEAD  | sub_category/{sub_category}/edit   | sub_category.edit     | App\Http\Controllers\SubcategoryController@edit            | web        |
++--------+-----------+------------------------------------+-----------------------+------------------------------------------------------------+------------+
+
+                             | Method    | URI                                | Name                                              | Action                         | Middleware |
+
+E:\xampp\htdocs\protoproject>
+
+| DELETE    | post_category/{post_category}      | post_category.destroy | App\Http\Controllers\CategoryController@destroy            | web        |
+
+ GET|HEAD  | post_category/{post_category}/edit | post_category.edit    | App\Http\Controllers\CategoryController@edit               | web        |
+
+
+$selected_employee_ids = json_decode($value_from_db, true);
+foreach($employee_id as $id) {
+  $checked = in_array($id, $selected_employee_ids) ? ' checked' : '';
+  echo "<input type='checkbox' name='employee[$id]'$checked>\n";
+}
+
+
+// 18-1-2021
+------------------------------------------------------------------------------------------------------------------
+echo $request -> image_gallery     // output: array
+
+print_r($request -> image_gallery);
+
+
+dd($request -> image_gallery);  //dd means die and dump . It will be showed 3 or 4 images
+
+
+
+vedio # 34   four menute left to complete for post page
+
+file:///E:/Porto/www.okler.net/previews/porto/9.0.0/blog-large-image-sidebar-left.html  --------------->single page
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+Sub category post count on posts_count and posts->count()
+
+https://laracasts.com/discuss/channels/laravel/sub-category-post-count
+
+@forelse ($categories as $cat)
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>{{ $cat->name }}</h4>
+                                <ul class="list-group list-group-flush">
+
+                                    @foreach ($cat->children as $child)
+                                    <li class="list-group-item">
+                                        {{ $child->name }} - {{ $child->posts->count() }}
+                                    </li>
+                                    @endforeach
+
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
+
+
+-------------------------------------------------------------------------------------------------------------
+
+Laravel Questions
+
+ https://laravelquestions.com/2020/10/21/unable-to-display-a-single-instance-of-category-for-multiple-sub-categories-within-the-foreach-loop-laravel/
+
+
+ Dropdown value under subcate
+
+ ------------------------------------------------------------------
+ E:\xampp\htdocs\Porto>php artisan make:controller BlogPageController
+ Controller created successfully.
+
+--------------------------------------------------------------------
+
+PUT and PATCH are used if we use data form page
+
+02-12-2021
+Start from : video # 41(trash2)
+
+----------------------------------------------------------------
+
+06-01-2021
+
+
+https://www.youtube.com/watch?v=Jo5Tfyzc94U
+বৃহস্পতিবার রাতে একবার পড়ুন 💥মিজানুর রহমান আজহারী💥06/01/2022💥 LIGHTBDTEC -631
+
+-------------------------------------------------------------------------
+https://laracasts.com/discuss/channels/general-discussion/how-to-create-a-route-with-slug-and-id
+
+----------------------------------------------------------------------------------
+
+বৃহস্পতি বার রাতে একবার পড়ুন 💥মিজানুর রহমান আজহারী💥06/01/2022💥 LIGHTBDTEC -631
+
+Surah tun inshirah or Sharh(means explanation or details or tafshir): Surah: 94 (In shirah) : Makki Surah : Ayat : 8 : Motitional 
+
+
+1 Neamat - 4 : boundty and 
+2 : natona - 2 : consolation
+3. nirdeshona - 2 (guideline)
+
+https://www.youtube.com/watch?v=Jo5Tfyzc94U
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+Al-wafi
+
+Comment System Open means out of authenticate (any person can comment in any case)
+
+1. Comment for Blogging website
+2. Comment for News paper website
+
+
+Three Way Comment
+
+1. Totally Free for comment means using gmail or facebook or youtube accout
+
+2. Comment for must be registered employee
+
+3. Member for our blog in that case As a author any one can fill up name, email and comment that means registered member can comment the comments
+
+
+13-01-2022
+
+Comments Part 02(setup)
+
+To do login for Author, Editor, Subscriber, customer We will use different comment panel
+
+One user can post multiple comment
+
+1. Multiple comments can have under one post
+2. One user can post One comment
+3. One user can post one comment at a time
+
+
+step one: We have to create Model and Migration File named is Comments
+
+We have to take help of stub we will customize stub
+
+We can create controller and model at a time
+
+We have to customize stubs->controller.models.stub
+
+Stab(controller.models.stub) customized We want to  (controller.models.stub): While creating Model, Migration and Controller can be created at a time
+
+
+php artisan make:model Comment -mr  means model and resource controller will be created at a time
+
+r  means resource controller
+
+Maximum time we use resource controller in backend and CRUD for many features
+
+Resource Controller use for backend
+
+Relation will be user table and post table with Model
+
+
+
+
+E:\xampp\htdocs\protoproject>php artisan stub:publish
+Stubs published successfully.
+
+E:\xampp\htdocs\protoproject>php artisan make:model Comment -mr
+
+
+Relation will be one post and multiple comments
+
+
+Post ID(post_id) has used inside comment table
+one comment from one post
+
+
+Comment part-4 : To show all comments
+
+
+we will show comments through posts using PostModel (one to many relationship will be happedn )
+
+post one and comments will be multiple
+
+
+note : post_id has been kept inside comments table
+
+
+
+3. We have passed post_model_id in comments table that's why we have to use belongsTo() function
+
+
+CommentController.php
+
+  public function postComment(Request $request){
+       // return  $request->all();
+        Comment::create([
+            'post_model_id' =>$request->post_model_id,
+            'user_id'=>Auth::user()->id,
+            'comment_text'=>$request->comment
+        ]);
+
+        return redirect() ->back()->with('success', 'The comment has been posted successfully');
+    }
+
+
+2022_01_13_213519_create_comments_table.php
+
+   public function up()
+    {
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('post_model_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('comment_id')->nullable();  // it purpose for reply based on comment id
+            $table->longText('comment_text');
+            $table->timestamps();
+        });
+    }
+
+
+----------------------------------------------------------------------
+
+
+liveware, viewjs, reactjs all are component
+
+Laravel CLI
+
+----------------------------------------------------------------------
+
+
+Need to make a relation between comments table to user table
+
+1. one user can do  multiple comments at signle time
+
+2. one comment can post from one user side at time
+
+3. We have passed user_id in comments table that's why we have to use belongsTo() function
+
+
+// Comment Toggle
+
+
+
+
+
+<script type="text/javascript">
+
+	function postReply (commentId) {
+
+	   // alert('comment id '+commentId);
+
+        $("#comment_box_id_"+commentId).show();
+    }
+
+    function postHideReply (commentId) {
+        $("#comment_box_id_"+commentId).hide();
+    }
+
+</script>
+
+
+(function($){
+    $(document).ready(function(){
+
+        alert('abc');
+
+        $('a.comment_reply_btn').click(function (e) {
+
+            e.preventDefault();
+
+            $('.comment_sl').toggle();
+        });
+
+
+    });
+})(jQuery);   //$ sign will be converted into jQuery
+

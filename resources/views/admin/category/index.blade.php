@@ -109,6 +109,7 @@
                 <tr>
                   <th>SL</th>
                   <th>Category</th>
+                  <th>Sub Category</th>
                   <th>Slug</th>
                   <th>User Role </th>
                   <th>Category Image</th>
@@ -123,6 +124,13 @@
                 <tr>
                   <td>{{$loop->index+1}}</td>
                   <td>{{$data -> cate_name}}</td>
+                  <td>
+                         @foreach ( $data->subcategories as $subcate)
+                          <ul>
+                             <li> {{ $subcate ->sub_cate_name }} </li>
+                          </ul>
+                           @endforeach
+                    </td>
                   <td>{{$data -> cate_slug}}</td>
                   <td>{{$data ->user_role_id}}</td>
 
@@ -142,10 +150,16 @@
                   </td>
 
                   <td>{{$data->created_at}}</td>
-                   <td>
+                   <td style="display: inline-block">
                      <a class="btn btn-sm btn-info" href="#">View</a>
-                     <a class="btn btn-sm btn-warning" href="#">Edit</a>
-                     <a class="btn btn-sm btn-danger" href="#">Delte</a>
+
+                     <a edit_id="{{$data ->id }}"  class="btn btn-sm btn-warning edit_category" href="#">Edit</a>
+
+                     <form  action="{{route('post_category.destroy', $data->id)}}" method="POST">
+                       @csrf
+                       @method('DELETE')
+                       <button class="btn btn-sm btn-danger" href="#">Delete</button>
+                     </form>
                     </td>
                 </tr>
 
@@ -175,7 +189,7 @@
 
 
 
-      <!-- Modal -->
+      <!-- Modal for Create -->
       <div class="modal fade" id="post_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -227,6 +241,58 @@
         </div>
       </div>
 
+
+      <!-- Modal for Edit -->
+      <div class="modal fade" id="edit_post_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <form action="{{route('post_category.update', 3)}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                  <h5>Category Name</h5>
+                  <input type="text" name="cate_name" class="form-control" placeholder="Category Name" required>
+                </div>
+
+
+                <div class="form-group">
+                  <h5>Sub Category</h5>
+                  @foreach($sub_categories as $sub_cate)
+                    <input type="checkbox" id="sub_category_id" name="sub_category_id[]" value="{{$sub_cate->id}}">{{$sub_cate -> sub_cate_name}}
+                  @endforeach
+                </div>
+
+                <div class="form-group">
+                  <h5>Upload File</h5>
+                  <input type="file" name="cate_image[]" multiple >
+                </div>
+
+
+                <div class="form-group">
+                  <input type="hidden" name="user_role_id" value="{{Auth::user()->role_id}}">
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
 
     </section>
